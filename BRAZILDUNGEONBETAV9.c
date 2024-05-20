@@ -2,10 +2,6 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define RED "\x1b[31m"
-#define RESET "\x1b[0m"
-
-
 char jogador_char = '&';
 char chave_char = '@';
 char guarda_char = 'X';
@@ -14,6 +10,7 @@ char porta_fecha = 'D';
 char porta_aber = '=';
 char arame_char = '#';
 char botao_char = 'O';
+char ventilacao_char = '>';
 
 char tecla_pressionada;
 int jogadorX = 1, jogadorY = 1;
@@ -79,7 +76,7 @@ void printar_nivel(int limiteX, int limiteY, char nivel[limiteX][limiteY])
         printf("\n");
     }
 }
-void gameover(char nivel[20][20]) 
+void gameover(char nivel[40][40]) 
 {
     if (nivel[jogadorX][jogadorY] == arame_char || jogadorX == guardaX && jogadorY == guardaY) {
         system("cls");
@@ -116,17 +113,16 @@ int main()
 
     char nivel2[20][20];
     
+    char nivel3[40][40];
+    
     paredes(10, 10, nivel1);
     paredes(20, 20, nivel2);
+    paredes(40, 40, nivel3);
 
     while (tela == 0)
     {
         system("cls");
-        printf("%s        *  *      *     *     *  *    *  *   *  *  *    *%s \n", RED, RESET);
-	    printf("%s        *   * *   *      * *    *     *  * *  *  *         *        *     *  * *  *%s \n", RED, RESET);
-		printf("%s        *  *      *   *  *     *  *  * *  *  *   ***  *     *  *  * *%s \n", RED, RESET);
-		printf("%s        *   * *  *       * *    *     *  *   *  *     *   *        *     *  *   *%s \n", RED, RESET);
-		printf("%s        *  *   *      *     **  *    *  *   *  **  *    *%s \n\n\n\n", RED, RESET);
+        printf("||||BRAZIL DUNGEON||||\n\n");
 	    printf("   1- Jogar\n\n\n   2- Tutorial\n\n\n   3- Sair\n\n\n");
         opcao = getch();
 
@@ -148,7 +144,7 @@ int main()
             printf(
                 "Passe por tres setores do presidio coletando 3 chaves e evitando os guardas para conseguir sua liberdade.\n\n"
                 "Em cada nivel, voce precisa se mover para coletar uma chave e abrir uma porta fechada.\n\n"
-                "Para completar sua fuga use os seguntes comandos:\n\n\n"
+                "Para completar sua fuga, veja esses comandos e elementos do cenario:\n\n\n"
                 "W: mova uma unidade para cima\n\n"
                 "A: mova uma unidade para esquerda\n\n"
                 "S: mova uma unidade para baixo\n\n"
@@ -156,7 +152,9 @@ int main()
                 "I: interage com um objeto\n\n"
 				"@: chave da porta\n\n"
 				"X: guarda noturno\n\n"
-				"&: Ze do crime\n\n");
+				"&: Ze do crime\n\n"
+				"#: arame farpado\n\n"
+				">: tubo de ventilacao\n\n");
             system("pause");
         }
         else if (opcao == '3')
@@ -323,7 +321,8 @@ int main()
         if (jogadorX == 18 && jogadorY == 5 && tem_chave == 1 && tecla_pressionada == 's'){
             system("cls");
             tela = 3;
-            printf("Em producao...\n");
+            printf("Boa, Ze do crime ja esta vendo a luz da liberdade...\n");
+            printf("Use as ventilacoes marcadas como '>' para driblar o guarda\n\n\n");
             system("pause");
         }
         movimento_jogador(tecla_pressionada, 19);
@@ -331,6 +330,110 @@ int main()
         system("cls");
 
     }
+    
+	jogadorX = 1;
+	jogadorY = 1;
+	guarda2X = 10;
+    guarda2Y = 17;
+    botao_pressionado = 0;
+    tem_chave = 0;
+    chaveX = 22;
+    chaveY = 28;
+        
+	while(tela == 3)
+	{
+		
+        
+        if (botao_pressionado == 0)
+        {
+            nivel3[chaveX-1][chaveY] = arame_char;
+            nivel3[chaveX+1][chaveY] = arame_char;
+            nivel3[chaveX][chaveY-1] = arame_char;
+            nivel3[chaveX][chaveY+1] = arame_char;
+            nivel3[32][17] = botao_char;
+        }
+        else
+        {
+            nivel3[chaveX-1][chaveY] = ' ';
+            nivel3[chaveX+1][chaveY] = ' ';
+            nivel3[chaveX][chaveY-1] = ' ';
+            nivel3[chaveX][chaveY+1] = ' ';
+        }
+        if (tem_chave == 0)
+        {
+            nivel3[39][20] = porta_fecha;
+            nivel3[chaveX][chaveY] = chave_char;
+        }
+        else
+        {
+            nivel3[39][20] = porta_aber;
+        }
 
+
+        guard_move = rand() % 2;    
+        if (guard_move == 0) 
+        {
+            if (jogadorY < guardaY && guardaY - 1 != 0) {
+                guardaY--;
+            } else if (jogadorY > guardaY && guardaY + 1 != 39) {
+                guardaY++;
+            }
+        } 
+        else 
+        {
+            if (jogadorX < guardaX && guardaX - 1 != 0) {
+                guardaX--;
+            } else if (jogadorX > guardaX && guardaX + 1 != 39) {
+                guardaX++;
+            }
+        }
+
+        
+        nivel3[jogadorX][jogadorY] = jogador_char;
+        nivel3[guardaX][guardaY] = guarda2_char;
+
+        printar_nivel(40, 40, nivel3);
+
+        if (jogadorX == 32 && jogadorY == 17)
+        {
+            botao_pressionado = 1;
+        }
+		
+		nivel3[5][22] = ventilacao_char;
+		nivel3[29][25] = ventilacao_char;
+		
+		if(jogadorX == 5 && jogadorY == 22)
+		{
+			jogadorX = 29;
+			jogadorY = 25;
+		}
+		else if(jogadorX == 29 && jogadorY == 25)
+		{
+			jogadorX = 5;
+			jogadorY = 22;
+		}
+		
+        nivel3[jogadorX][jogadorY] = ' ';
+        nivel3[guardaX][guardaY] = ' ';
+        tecla_pressionada = getch();
+
+        if (jogadorX == chaveX && jogadorY == chaveY && tecla_pressionada == 'i')
+        {
+            tem_chave = 1;
+            nivel3[39][20] = porta_aber;
+        }
+        if (jogadorX == 38 && jogadorY == 20 && tem_chave == 1 && tecla_pressionada == 's'){
+            system("cls");
+            tela = 4;
+            printf("O sol nao eh mais quadrado!\n");
+            printf("Voce conquistou sua liberdade (nao) honesta, mas cuidado pra nao vacilar e perder ela de novo...\n\n\n");
+            system("pause");
+        }
+        movimento_jogador(tecla_pressionada, 39);
+        gameover(nivel3);
+        system("cls");
+
+	}
+	
     return 0;
 }
