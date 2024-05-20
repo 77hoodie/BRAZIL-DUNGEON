@@ -1,5 +1,5 @@
 # BRAZIL-DUNGEON
-Jogo estilo dungeon crawler baseado no Brasil (Atual)
+Jogo estilo dungeon crawler baseado no Brasil (atual)
 
 O jogo conta a história de um criminoso chamado "Zé do crime", que foi jogado no presídio de Carandiru (São Paulo). Zé do crime agora fará de tudo para sair desse lugar terrível e conquistar sua (não) honesta liberdade
 
