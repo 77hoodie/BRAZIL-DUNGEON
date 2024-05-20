@@ -145,16 +145,20 @@ int main()
                 "Passe por tres setores do presidio coletando 3 chaves e evitando os guardas para conseguir sua liberdade.\n\n"
                 "Em cada nivel, voce precisa se mover para coletar uma chave e abrir uma porta fechada.\n\n"
                 "Para completar sua fuga, veja esses comandos e elementos do cenario:\n\n\n"
-                "W: mova uma unidade para cima\n\n"
-                "A: mova uma unidade para esquerda\n\n"
-                "S: mova uma unidade para baixo\n\n"
-                "D: mova uma unidade para direita\n\n"
-                "I: interage com um objeto\n\n"
-				"@: chave da porta\n\n"
-				"X: guarda noturno\n\n"
+                "W: Mova uma unidade para cima\n\n"
+                "A: Mova uma unidade para esquerda\n\n"
+                "S: Mova uma unidade para baixo\n\n"
+                "D: Mova uma unidade para direita\n\n"
+                "I: Interage com um objeto\n\n"
+				"@: Chave da porta\n\n"
+				"X: Guarda nivel 1\n\n"
+				"V: Guarda nivel 2\n\n"
 				"&: Ze do crime\n\n"
-				"#: arame farpado\n\n"
-				">: tubo de ventilacao\n\n");
+				"#: Arame farpado\n\n"
+				">: Tubo de ventilacao\n\n"
+				"O: Botao\n\n"
+				"D: Porta fechada\n\n"
+				"=: Porta aberta\n\n");
             system("pause");
         }
         else if (opcao == '3')
@@ -433,6 +437,13 @@ int main()
         gameover(nivel3);
         system("cls");
 
+	}
+	
+	while(tela == 4){
+		printf("Obrigado por jogar\n\nFeito por: Follmann, Vitor Bismarck, Luis Arthur\n\n");
+		tela = 0;
+		system("pause");
+		main();
 	}
 	
     return 0;
