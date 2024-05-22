@@ -76,7 +76,7 @@ void printar_nivel(int limiteX, int limiteY, char nivel[limiteX][limiteY])
         printf("\n");
     }
 }
-void gameover(char nivel[40][40]) 
+void gameover(char nivel[20][20]) 
 {
     if (nivel[jogadorX][jogadorY] == arame_char || jogadorX == guardaX && jogadorY == guardaY) {
         system("cls");
