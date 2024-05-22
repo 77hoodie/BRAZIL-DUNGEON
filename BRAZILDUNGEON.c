@@ -103,7 +103,7 @@ void gameover(char nivel[40][40])
 
 void gameover2(char nivel[40][40])
 {
-if (nivel[jogadorX][jogadorY] == arame_char || jogadorX == guardaX && jogadorY == guardaY) {
+    if (nivel[jogadorX][jogadorY] == arame_char || jogadorX == guardaX && jogadorY == guardaY) {
         system("cls");
         jogadorY = 1;
         jogadorX = 1;
@@ -158,7 +158,7 @@ int main()
 
             printf("Ze do crime foi jogado no presidio de Carandiru para pagar pelo o que fez\n");
             sleep(1);
-            printf("Em uma madrugada silenciosa, o Ze do crime tentou escapar de carandiru\n\n\n");
+            printf("Em uma madrugada silenciosa, o Ze do crime tentou escapar de Carandiru\n\n\n");
 
             system("pause");
             tela = 1;
