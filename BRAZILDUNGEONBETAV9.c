@@ -100,6 +100,32 @@ void gameover(char nivel[40][40])
         system("pause");
     }
 }
+
+void gameover2(char nivel[40][40])
+{
+if (nivel[jogadorX][jogadorY] == arame_char || jogadorX == guardaX && jogadorY == guardaY) {
+        system("cls");
+        jogadorY = 1;
+        jogadorX = 1;
+        tem_chave = 0;
+        vidas--;
+
+        if (vidas == 0) {
+            printf(
+                "Voce foi pego 3 vezes tentando fugir e foi jogado na solitaria\n"
+                "Talvez em outro momento voce consiga fugir...\n"
+                "\n"
+            );
+            system("pause");
+            tela = 0;
+            main();
+        }
+        printf("Voce foi pego! Tentativas restantes: (%d)\n\n", vidas);
+
+        system("pause");
+    }
+}
+
 int main()
 {
     vidas = 3;
@@ -434,7 +460,7 @@ int main()
             system("pause");
         }
         movimento_jogador(tecla_pressionada, 39);
-        gameover(nivel3);
+        gameover2(nivel3);
         system("cls");
 
 	}
