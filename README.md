@@ -33,6 +33,4 @@ Controles e elementos do mapa:
 
 - #: Arame farpado
 
-- '>': Tubo de ventilação (teleporte)
-
-Integrantes da equipe: João Pedro Follmann, Vitor Bismarck, Luis Arthur Marciao
+- '>': Tubo de ventilação
