@@ -466,7 +466,7 @@ int main()
 	}
 	
 	while(tela == 4){
-		printf("Obrigado por jogar\n\nFeito por: Follmann, Vitor Bismarck, Luis Arthur\n\n");
+		printf("Obrigado por jogar);
 		tela = 0;
 		system("pause");
 		main();
